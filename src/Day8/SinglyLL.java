@@ -105,6 +105,51 @@ public class SinglyLL {
         currX.next=currY.next;
         currY.next=temp;
     }
+    public void deleteFirst(){
+        if(head==null){
+            System.out.println("List is Empty");
+            return;
+        }
+        head=head.next;
+    }
+    public void deleteLast(){
+        if(head==null){
+            System.out.println("List is Empty");
+            return;
+        }
+        if(head.next==null){
+            head=null;
+            return;
+        }
+        Node curr=head;
+        while(curr.next.next!=null){
+            curr=curr.next;
+        }
+        curr.next=null;
+    }
+    public void deletePosition(int pos){
+        if(head==null){
+            System.out.println("List is Empty");
+            return;
+        }
+        if(pos<=0){
+            System.out.println("Invalid Position");
+            return;
+        }
+        if(pos==1){
+            deleteFirst();
+            return;
+        }
+        Node curr=head;
+        for(int i=1;i<pos-1 && curr!=null;i++){
+            curr=curr.next;
+        }
+        if(curr==null || curr.next==null){
+            System.out.println("Position out of Bounds");
+            return;
+        }
+        curr.next=curr.next.next;
+    }
    public void display(){
         Node curr=head;
         while(curr!=null){
@@ -133,6 +178,12 @@ public class SinglyLL {
         System.out.println("Cycle : "+list.isCyclic());
         System.out.println("Middle Element is  :"+list.findMiddle());
         list.swapNodes(20,40);
+        list.display();
+        list.deleteFirst();
+        list.display();
+        list.deleteLast();
+        list.display();
+        list.deletePosition(2);
         list.display();
 
 
